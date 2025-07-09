@@ -1,0 +1,90 @@
+import unittest
+from io import StringIO
+import sys
+
+# Assuming your main code is saved in school_catalogue.py and looks like:
+# from school_catalogue import School, HighSchool, MiddleSchool, SchoolCatalog
+
+# For this demo, I'll re-define the minimal classes here.
+class School:
+    def __init__(self, name, address):
+        self._name = name
+        self._address = address
+        self._students = []
+        self._sportsTeams = []
+
+    def addStudent(self, student):
+        self._students.append(student)
+
+    def listStudents(self):
+        return self._students
+
+    def addSportsTeam(self, team):
+        self._sportsTeams.append(team)
+
+    def listSportsTeams(self):
+        return self._sportsTeams
+
+    def __str__(self):
+        return f"{self._name} located at {self._address}"
+
+class HighSchool(School):
+    def __init__(self, name, address, ranking):
+        super().__init__(name, address)
+        self._ranking = ranking
+
+    def __str__(self):
+        return f"High School: {self._name}, Ranking: {self._ranking}"
+
+class MiddleSchool(School):
+    def __init__(self, name, address, hasHonorProgram):
+        super().__init__(name, address)
+        self._hasHonorProgram = hasHonorProgram
+
+    def __str__(self):
+        return f"Middle School: {self._name}, Honors: {self._hasHonorProgram}"
+
+class SchoolCatalog:
+    def __init__(self):
+        self._catalog = []
+
+    def addSchool(self, school):
+        self._catalog.append(school)
+
+    def listSchools(self):
+        return [str(school) for school in self._catalog]
+
+# Unit tests
+class TestSchoolCatalogue(unittest.TestCase):
+
+    def test_add_student(self):
+        school = School("Test School", "123 Test St")
+        school.addStudent("Alice")
+        self.assertIn("Alice", school.listStudents())
+
+    def test_add_sports_team(self):
+        school = School("Test School", "123 Test St")
+        school.addSportsTeam("Soccer")
+        self.assertIn("Soccer", school.listSportsTeams())
+
+    def test_high_school_str(self):
+        hs = HighSchool("Roosevelt High", "123 Main St", 10)
+        self.assertEqual(str(hs), "High School: Roosevelt High, Ranking: 10")
+
+    def test_middle_school_str(self):
+        ms = MiddleSchool("Lincoln Middle", "456 Elm St", True)
+        self.assertEqual(str(ms), "Middle School: Lincoln Middle, Honors: True")
+
+    def test_school_catalog_listing(self):
+        catalog = SchoolCatalog()
+        hs = HighSchool("Roosevelt High", "123 Main St", 9)
+        ms = MiddleSchool("Lincoln Middle", "456 Elm St", False)
+        catalog.addSchool(hs)
+        catalog.addSchool(ms)
+        schools = catalog.listSchools()
+        self.assertEqual(len(schools), 2)
+        self.assertIn("Roosevelt High", schools[0])
+        self.assertIn("Lincoln Middle", schools[1])
+
+if __name__ == '__main__':
+    unittest.main()
