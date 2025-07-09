@@ -1,0 +1,38 @@
+class School:
+    def __init__(self, name, address):
+        self._name = name
+        self._address = address
+        self._students = []
+        self._sportsTeams = []
+
+    # Getters and Setters
+    def getName(self):
+        return self._name
+
+    def setName(self, name):
+        self._name = name
+
+    def getAddress(self):
+        return self._address
+
+    def setAddress(self, address):
+        self._address = address
+
+    def addStudent(self, student):
+        self._students.append(student)
+
+    def removeStudent(self, student):
+        if student in self._students:
+            self._students.remove(student)
+
+    def listStudents(self):
+        return self._students
+
+    def addSportsTeam(self, team):
+        self._sportsTeams.append(team)
+
+    def listSportsTeams(self):
+        return self._sportsTeams
+
+    def __str__(self):
+        return f"{self._name} located at {self._address}"
