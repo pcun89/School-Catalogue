@@ -81,3 +81,30 @@ class SchoolCatalog:
 
     def listSchools(self):
         return [str(school) for school in self._catalog]
+
+
+def main():
+    hs1 = HighSchool("Roosevelt High", "123 Main St", 9)
+    hs1.addStudent("Alice")
+    hs1.addSportsTeam("Basketball")
+
+    ms1 = MiddleSchool("Lincoln Middle", "456 Elm St", True)
+    ms1.addStudent("Bob")
+
+    catalog = SchoolCatalog()
+    catalog.addSchool(hs1)
+    catalog.addSchool(ms1)
+
+    print("School Catalog:")
+    for school in catalog.listSchools():
+        print(school)
+
+    print("\nStudents at Roosevelt High:")
+    print(hs1.listStudents())
+
+    print("\nSports Teams at Roosevelt High:")
+    print(hs1.listSportsTeams())
+
+
+if __name__ == "__main__":
+    main()
