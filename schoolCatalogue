@@ -36,3 +36,18 @@ class School:
 
     def __str__(self):
         return f"{self._name} located at {self._address}"
+
+
+class HighSchool(School):
+    def __init__(self, name, address, ranking):
+        super().__init__(name, address)
+        self._ranking = ranking
+
+    def getRanking(self):
+        return self._ranking
+
+    def setRanking(self, rank):
+        self._ranking = rank
+
+    def __str__(self):
+        return f"High School: {self._name}, Ranking: {self._ranking}"
