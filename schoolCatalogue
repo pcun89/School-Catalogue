@@ -51,3 +51,18 @@ class HighSchool(School):
 
     def __str__(self):
         return f"High School: {self._name}, Ranking: {self._ranking}"
+
+
+class MiddleSchool(School):
+    def __init__(self, name, address, hasHonorProgram):
+        super().__init__(name, address)
+        self._hasHonorProgram = hasHonorProgram
+
+    def hasHonor(self):
+        return self._hasHonorProgram
+
+    def setHonorProgram(self, value):
+        self._hasHonorProgram = value
+
+    def __str__(self):
+        return f"Middle School: {self._name}, Honors: {self._hasHonorProgram}"
