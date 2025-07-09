@@ -66,3 +66,18 @@ class MiddleSchool(School):
 
     def __str__(self):
         return f"Middle School: {self._name}, Honors: {self._hasHonorProgram}"
+
+
+class SchoolCatalog:
+    def __init__(self):
+        self._catalog = []
+
+    def addSchool(self, school):
+        self._catalog.append(school)
+
+    def removeSchool(self, school):
+        if school in self._catalog:
+            self._catalog.remove(school)
+
+    def listSchools(self):
+        return [str(school) for school in self._catalog]
